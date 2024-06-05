@@ -1,5 +1,8 @@
 # === Files ===
 
 # === Hidden Files ===
+.run.sh
+.test.sh
+.test_cache
 
 # === Directories ===
