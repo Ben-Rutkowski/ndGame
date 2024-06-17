@@ -1,8 +1,11 @@
 # === Files ===
+compile_commands.json
 
 # === Hidden Files ===
 .run.sh
 .test.sh
 .test_cache
+.cache
 
 # === Directories ===
+build/
