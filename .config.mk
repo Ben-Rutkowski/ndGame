@@ -105,11 +105,10 @@ endef
 # Takes a list of subdirectories and returns all of the objects
 # in each subdirectory's $(obj_DIR) directory EXECPT those objects
 # that have the same name as one in the filter list
+# define GetObjectsFilter # $1 list of subdirectories; $2 filtered out objects
 define GetObjectsFilter # $1 list of subdirectories; $2 filtered out objects
 	$(filter-out \
-		%/$(notdir $2), \
-		$(foreach dr,$1, \
-			$(wildcard $(dr)/$(obj_DIR)/*.o) \
-		) \
+		$(foreach obj,$2,%/$(notdir $(obj))), \
+		$(foreach dr,$1,$(wildcard $(dr)/$(obj_DIR)/*.o)) \
 	)
 endef
