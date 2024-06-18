@@ -9,7 +9,6 @@ OBJ =$(patsubst %,%/*.o,$(all_OBJDIR))
 # === Compiler ===
 comp =$(CXX)
 flag =$(CXX_flag)
-inc  =
 link =
 
 
@@ -17,7 +16,7 @@ link =
 $(bld_DIR)/$(bld_NAME): $(all_NAME)
 	@mkdir -p $(bld_DIR)
 	@echo "=== Linking Build ==="
-	$(comp) $(OBJ) $(flag) $(inc) $(link) -o $(bld_DIR)/$(bld_NAME)
+	$(comp) $(OBJ) $(flag) $(link) -o $(bld_DIR)/$(bld_NAME)
 
 # app:
 # 	$(call RecurMake,$(app_DIR),)

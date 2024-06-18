@@ -1,5 +1,6 @@
 #include "test.hpp"
 
 int main() {
-    debug();
+    Debug d;
+    d.print();
 }

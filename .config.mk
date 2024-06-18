@@ -55,6 +55,16 @@ define RecurMake # $1 subdirectory; $2 build command
 	$(MAKE) -C $1 $2 CONFIG_FILE=$(CONFIG_FILE) ROOT=$(ROOT)
 endef
 
+#     :RecurObject:
+# Recursively calls make from a given object file with 
+# full path
+define RecurObject # $1 object file (full path)
+	$(MAKE) -C \
+		$(patsubst %/$(obj_DIR)/,%,$(dir $1)) \
+		$(patsubst %,$(obj_DIR)/%,$(notdir $1)) \
+		CONFIG_FILE=$(CONFIG_FILE) ROOT=$(ROOT)
+endef
+
 #     :FirstOrderSource:
 # Finds all the sources in a given directory
 define FirstOrderSource # $1 base dir; $2 extension
@@ -88,5 +98,18 @@ endef
 define SourceToObject # $1 source list; $2 object dir
 	$(patsubst %,$2/%.o, \
 		$(basename $(notdir $1)) \
+	)
+endef
+
+#     :GetObjectsFilter:
+# Takes a list of subdirectories and returns all of the objects
+# in each subdirectory's $(obj_DIR) directory EXECPT those objects
+# that have the same name as one in the filter list
+define GetObjectsFilter # $1 list of subdirectories; $2 filtered out objects
+	$(filter-out \
+		%/$(notdir $2), \
+		$(foreach dr,$1, \
+			$(wildcard $(dr)/$(obj_DIR)/*.o) \
+		) \
 	)
 endef
