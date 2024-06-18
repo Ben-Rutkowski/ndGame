@@ -27,6 +27,12 @@ shd_SRCDIR  =$(shd_DIR)/
 shd_HEADDIR =$(shd_DIR)/
 shd_OBJDIR  =$(shd_DIR)/$(obj_DIR)
 
+# --- int ---
+int_DIR     =$(ROOT)/interface
+int_SRCDIR  =$(int_DIR)
+int_HEADDIR =$(int_DIR)
+int_OBJDIR  =$(int_DIR)/$(obj_DIR)
+
 
 # ================ Common Variables ================
 obj_DIR =objects
@@ -39,6 +45,9 @@ bld_NAME =ndGame_DEBUG
 # ================ Compiler ================
 CXX 	 =clang++
 CXX_flag =-Wall -fdiagnostics-color=always -g
+
+CC      =clang
+CC_flag =-Wall -fdiagnostics-color=always -g
 
 
 # --- Macros ---

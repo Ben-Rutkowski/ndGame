@@ -1,6 +1,6 @@
 include .config.mk
-all_OBJDIR =$(mod_OBJDIR)
-all_NAME   =mod
+all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR)
+all_NAME   =mod int
 
 
 # === Units ===
@@ -30,6 +30,9 @@ mod:
 # shd:
 # 	$(call RecurMake,$(shd_DIR),)
 
+int:
+	$(call RecurMake,$(int_DIR),)
+
 
 # === Directory Management ===
 clean:
@@ -37,6 +40,7 @@ clean:
 # 	$(call RecurMake,$(lib_DIR),clean)
 	$(call RecurMake,$(mod_DIR),clean)
 #	$(call RecurMake,$(shd_DIR),clean)
+	$(call RecurMake,$(int_DIR),clean)
 
 	@echo "--- Cleaning Build ---"
 	rm -f $(bld_DIR)/$(bld_NAME)
