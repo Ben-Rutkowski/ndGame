@@ -1,4 +1,4 @@
-#include <iostream>
+#include <stdlib.h>
 #include "logger.hpp"
 
 int main() {
@@ -21,7 +21,7 @@ int main() {
     ndLog(LOG, "message");
     ndLog(ERR, "error message");
     ndLog(WAR, "warning message");
-    ndLogFast("Fast One");
-    ndLogFast("Fast Two");
-    ndLogFast("Fast Three");
+    ndLogFast("fast One");
+    ndLogFast("fast Two");
+    ndLogFast("fast Three");
 }
