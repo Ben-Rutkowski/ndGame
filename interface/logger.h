@@ -5,7 +5,7 @@
 #include <pthread.h>
 
 typedef enum Logger_LogLevel{
-    LOG, ERR, WAR
+    LOG, ERR, WAR, SUC
 } Logger_LogLevel;
 
 

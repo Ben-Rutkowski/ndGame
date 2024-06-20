@@ -52,6 +52,7 @@ static const char* levelString(Logger_LogLevel level) {
         case LOG: return "-   -";
         case ERR: return "-ERR-";
         case WAR: return "-WAR-";
+        case SUC: return "-SUC-";
         default:  return "-NUL-";
     }
 }
