@@ -67,14 +67,17 @@ void Logger_initLog(const char *filename) {
     pthread_mutex_init(&Logger_log_mutex, NULL);
     gettimeofday(&Logger_init_time,NULL);
     gmtime(&Logger_init_time.tv_sec);
-    
     setvbuf(Logger_log_file, buf, _IOFBF, sizeof(buf));
+
+    printf("Log set to %s\n", filename);
 }
 
 void Logger_taredownLog() {
     fclose(Logger_log_file);
     Logger_log_file = NULL;
     pthread_mutex_destroy(&Logger_log_mutex);
+
+    printf("Log closed\n");
 }
 
 void ndLog(Logger_LogLevel level, const char* message) {

@@ -1,11 +1,8 @@
 #include <iostream>
-
-extern "C" {
-    #include "logger.h"
-}
+#include "logger.hpp"
 
 int main() {
-    Logger_initLog("program.log");
+    ndLogger log("program.log");
 
     const int SIZE = 10;
     float* A = (float*)malloc(SIZE*sizeof(float));
@@ -25,8 +22,6 @@ int main() {
     ndLog(ERR, "error message");
     ndLog(WAR, "warning message");
     ndLogFast("Fast One");
-    ndLogFast("Fast One");
     ndLogFast("Fast Two");
-
-    Logger_taredownLog();
+    ndLogFast("Fast Three");
 }

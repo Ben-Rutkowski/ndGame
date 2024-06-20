@@ -1,5 +1,5 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef LOGGER_C_H
+#define LOGGER_C_H
 
 #include <stdio.h>
 #include <pthread.h>
