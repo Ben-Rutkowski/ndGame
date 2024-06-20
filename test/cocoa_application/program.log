@@ -1,7 +1,0 @@
-[0:0:0.000254] -   - initCocoa()
-[0:0:0.076660] -   -     AppDelegate set
-[0:0:0.076797] -   -     Starting cocoa loop
-[0:0:0.077611] -   - applicationWillFinishLaunching()
-[0:0:0.087525] -   - applicationDidFinishLaunching()
-[0:0:0.088826] -   -     Set activation policiy to regular
-[0:0:0.088882] -   -     Stopping cocoa loop
