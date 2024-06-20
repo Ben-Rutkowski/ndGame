@@ -8,10 +8,14 @@ typedef enum Logger_LogLevel{
     LOG, ERR, WAR
 } Logger_LogLevel;
 
+
+// --- Extern ---
 extern FILE*           Logger_log_file;
 extern pthread_mutex_t Logger_log_mutex;
 extern struct timeval  Logger_init_time_micro;
 
+
+// --- Global Functions ---
 void Logger_initLog(const char* filename);
 void Logger_taredownLog();
 

@@ -5,10 +5,14 @@
 
 #define LOG_BUFFER_SIZE 10000
 
+
+// ================ Extern ================
 FILE*           Logger_log_file = NULL;
 pthread_mutex_t Logger_log_mutex;
 struct timeval  Logger_init_time;
 
+
+// ================ Static ================
 static const unsigned long MILL = 1000000;
 static char buf[LOG_BUFFER_SIZE];
 
@@ -52,6 +56,8 @@ static const char* levelString(Logger_LogLevel level) {
     }
 }
 
+
+// ================ Global Functions ================
 void Logger_initLog(const char *filename) {
     Logger_log_file = fopen(filename, "w");
     if (!Logger_log_file) {
