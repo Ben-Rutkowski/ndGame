@@ -1,6 +1,6 @@
 include $(ROOT)/$(CONFIG_FILE)
-sub_DIR     =$(mod_DIR)
-sub_HEADDIR =$(mod_HEADDIR)
+sub_DIR     =$(int_DIR)
+sub_HEADDIR =$(int_HEADDIR)
 
 
 # === Units ===

@@ -1,2 +1,7 @@
 ================ TODO ================
-- Set up test structure
+- Log module:
+    - different log levels
+    - log functions: to log to a file
+    - timestamps
+    - thread safety: use mutex
+    - manage logs in the file (rotation and renaming etc.)

@@ -1,6 +1,5 @@
-#include "test.hpp"
+#include <iostream>
 
 int main() {
-    Debug d;
-    d.print();
+    std::cout << "main function" << std::endl;
 }
