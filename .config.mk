@@ -6,7 +6,7 @@ ROOT        ?=$(CURDIR)
 # --- app ---
 app_DIR     =$(ROOT)/application_macOS
 app_SRCDIR  =$(app_DIR)/src
-app_HEADDIR =$(app_DIR)/src
+app_HEADDIR =$(app_DIR)/header
 app_OBJDIR  =$(app_DIR)/$(obj_DIR)
 
 # --- lib ---
@@ -43,11 +43,20 @@ bld_NAME =ndGame_DEBUG
 
 
 # ================ Compiler ================
+COMMON_flag =-Wall -fdiagnostics-color=always -g
+COMMON_link =-framework AppKit
+
 CXX 	 =clang++
-CXX_flag =-Wall -fdiagnostics-color=always -g
+CXX_flag =$(COMMON_flag)
+CXX_link =$(COMMON_link)
 
 CC      =clang
-CC_flag =-Wall -fdiagnostics-color=always -g
+CC_flag =$(COMMON_flag)
+CC_link =$(COMMON_link)
+
+CCOBJ      =clang
+CCOBJ_flag =$(COMMON_flag)
+COBJ_link  =$(COMMON_link)
 
 
 # --- Macros ---

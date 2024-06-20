@@ -1,6 +1,6 @@
 include .config.mk
-all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR)
-all_NAME   =mod int
+all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR) $(app_OBJDIR)
+all_NAME   =mod int app
 
 
 # === Units ===
@@ -9,7 +9,7 @@ OBJ =$(patsubst %,%/*.o,$(all_OBJDIR))
 # === Compiler ===
 comp =$(CXX)
 flag =$(CXX_flag)
-link =
+link =$(CXX_link)
 
 
 # === Build ===
@@ -18,9 +18,9 @@ $(bld_DIR)/$(bld_NAME): $(all_NAME)
 	@echo "=== Linking Build ==="
 	$(comp) $(OBJ) $(flag) $(link) -o $(bld_DIR)/$(bld_NAME)
 
-# app:
-# 	$(call RecurMake,$(app_DIR),)
-# 
+app:
+	$(call RecurMake,$(app_DIR),)
+
 # lib:
 # 	$(call RecurMake,$(lib_DIR),)
 
@@ -36,7 +36,7 @@ int:
 
 # === Directory Management ===
 clean:
-# 	$(call RecurMake,$(app_DIR),clean)
+	$(call RecurMake,$(app_DIR),clean)
 # 	$(call RecurMake,$(lib_DIR),clean)
 	$(call RecurMake,$(mod_DIR),clean)
 #	$(call RecurMake,$(shd_DIR),clean)

@@ -6,24 +6,24 @@ sub_HEADDIR =$(app_HEADDIR)
 
 
 # === Units ===
-# SRC  =$(call FirstOrderSource,$(sub_SRCDIR),.---) 
-# HEAD =$(call FirstOrderSource,$(sub_HEADDIR),.---) 
+SRC  =$(call FirstOrderSource,$(sub_SRCDIR),.m) 
+HEAD =$(call FirstOrderSource,$(sub_HEADDIR),.h) 
 OBJ  =$(call SourceToObject,$(SRC),$(obj_DIR))
 
 
 # === Compiler ===
 comp =$(CXX)
 flag =$(CXX_flag) -c
-inc  =-I$(sub_HEADDIR)
+inc  =-I$(sub_HEADDIR) -I$(int_HEADDIR)
 
 
 # === Build ===
 subdirectory: $(obj_DIR) $(OBJ)
 
 .SECONDEXPANSION:
-# $(OBJ): $(obj_DIR)/%.o: $(call NameToSource,%,$(SRC),.---) $(HEAD)
-# 	@echo "=== Compiling <$(notdir $<)> in <$(sub_NAME)> ==="
-# 	$(comp) $< $(flag) $(inc) -o $@
+$(OBJ): $(obj_DIR)/%.o: $(call NameToSource,%,$(SRC),.m) $(HEAD)
+	@echo "=== Compiling <$(notdir $<)> in <$(sub_NAME)> ==="
+	$(comp) $< $(flag) $(inc) -o $@
 
 
 # --- Directory Management ---
