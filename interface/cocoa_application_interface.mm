@@ -1,3 +1,4 @@
+#include "test_success.h"
 #import <AppKit/AppKit.h>
 #import "cocoa_application_interface.h"
 #import "AppDelegate.h"
@@ -6,8 +7,6 @@
 #include <iostream>
 
 void initCocoa() {
-    ndLog(LOG, "initCocoa()");
-
     AppDelegate* app_delegate = [[AppDelegate alloc] init];
     if (app_delegate == nil) {
         ndLog(ERR, "Failed to initializing AppDelegate: Terminating");
@@ -16,10 +15,9 @@ void initCocoa() {
 
     [NSApplication sharedApplication];
     [NSApp setDelegate:app_delegate];
-    ndLog(LOG, "    AppDelegate set");
+    ndLog(SUC, INT_SetAppDelegate);
 
     if (![[NSRunningApplication currentApplication] isFinishedLaunching]) {
-        ndLog(LOG, "    Starting cocoa loop"); 
         [NSApp run];
     } else {
         ndLog(ERR, "NSApplication failed to finish launching");

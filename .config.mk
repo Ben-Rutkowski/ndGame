@@ -47,7 +47,7 @@ COMMON_flag =-Wall -fdiagnostics-color=always -g
 COMMON_link =-framework AppKit
 
 CXX 	 =clang++
-CXX_flag =$(COMMON_flag)
+CXX_flag =$(COMMON_flag) -std=c++20
 CXX_link =$(COMMON_link)
 
 CC      =clang
@@ -56,7 +56,7 @@ CC_link =$(COMMON_link)
 
 CCOBJ      =clang
 CCOBJ_flag =$(COMMON_flag)
-COBJ_link  =$(COMMON_link)
+CCOBJ_link  =$(COMMON_link)
 
 
 # --- Macros ---
