@@ -2,14 +2,14 @@
 #include "test_case.hpp"
 #include <vector>
 
-std::vector<TestCaseList> cocoa_application = {
+TestSuite cocoa_application( "../cocoa_application/program.log", {
     {
-        "Initialize Application",
+        "Initialize Cocoa Application",
         INT_SetAppDelegate,
-        APP_AppFinishLaunch,
+        APP_AppFinishLaunch
     }
-};
+});
 
 int main() {
-    evaulateBuild("../cocoa_application/program.log", cocoa_application);
+    cocoa_application.evaluate();
 }

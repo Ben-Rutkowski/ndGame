@@ -32,6 +32,27 @@ public:
 };
 
 
+// ================ TestSuite ================
+class TestSuite {
+
+// --- Attributes ---
+private:
+    std::string program_log_path;
+    std::vector<TestCaseList> test_case_lists;
+
+
+// --- Initialization ---
+public:
+    TestSuite(std::string path, 
+              std::initializer_list<TestCaseList> cases);
+
+
+// --- Operations ---
+public:
+    void evaluate();
+};
+
+
 // ================ Evaluation ================
 void evaulateBuild(std::string program_log_path, 
                    std::vector<TestCaseList> test_case_lists);

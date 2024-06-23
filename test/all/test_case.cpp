@@ -8,7 +8,7 @@
 #define GREEN "\x1b[32m"
 #define RESET "\x1b[0m"
 
-// ================ Initialization ================
+// ================ TestCaseList: Initialization ================
 TestCaseList::TestCaseList(std::initializer_list<std::string> init) 
 :list_pointer(0),
  did_succeed(false)
@@ -29,7 +29,7 @@ std::string TestCaseList::name() { return list_name; }
 int TestCaseList::size() { return list.size(); }
 
 
-// ================ Operations ================
+// ================ TestCaseList: Operations ================
 void TestCaseList::checkMessage(std::string message) {
     if (!did_succeed && list[list_pointer] == message) {
         list_pointer++;
@@ -44,10 +44,15 @@ bool TestCaseList::didSucceed()     { return did_succeed; }
 int  TestCaseList::howManySuccess() { return list_pointer; }
 
 
-// ================ Evaluation ================
-void evaulateBuild(std::string program_log_path, 
-                   std::vector<TestCaseList> test_case_lists)
-{
+// ================ TestSuite: Initialization ================
+TestSuite::TestSuite(std::string path, 
+                     std::initializer_list<TestCaseList> cases)
+:program_log_path(path),
+ test_case_lists(cases) {}
+
+
+// ================ TestSuite: Evaluation ================
+void TestSuite::evaluate() {
     std::ifstream program_log(program_log_path);
     if (!program_log.is_open()) {
         std::cerr << "Failed to open the log " << program_log_path << std::endl;
@@ -79,3 +84,5 @@ void evaulateBuild(std::string program_log_path,
         }
     }
 }
+
+
