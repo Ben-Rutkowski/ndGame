@@ -1,7 +1,7 @@
 #include "logger.hpp"
 #include "cocoa_application_interface.h"
 
-static ndLogger log("program.log");
+static ndLogger program_log("program.log");
 
 int main() {
     initCocoa();

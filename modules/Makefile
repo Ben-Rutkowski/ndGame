@@ -14,7 +14,7 @@ OBJ  =$(call SourceToObject,$(SRC),$(obj_DIR))
 # === Compiler ===
 comp =$(CXX)
 flag =$(CXX_flag) -c
-inc  =-I$(sub_HEADDIR) -I$(int_HEADDIR)
+inc  =-I$(sub_HEADDIR) -I$(int_HEADDIR) -I$(lib_HEADDIR)
 
 
 # === Build ===

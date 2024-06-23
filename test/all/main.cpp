@@ -10,6 +10,14 @@ TestSuite cocoa_application( "../cocoa_application/program.log", {
     }
 });
 
+TestSuite circular_queue( "../circular_queue/program.log", {
+    {
+        "Testing Circular Queue",
+        UNIT_Success
+    }
+});
+
 int main() {
     cocoa_application.evaluate();
+    circular_queue.evaluate();
 }

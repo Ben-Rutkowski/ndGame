@@ -35,6 +35,9 @@ int_OBJDIR  =$(int_DIR)/$(obj_DIR)
 
 
 # ================ Common Variables ================
+all_DIR =$(app_DIR) $(lib_DIR) $(mod_DIR) $(int_DIR)
+all_HEADDIR =$(app_HEADDIR) $(lib_HEADDIR) $(mod_HEADDIR) $(int_HEADDIR)
+
 obj_DIR =objects
 
 tst_DIR  =$(ROOT)/test

@@ -2,7 +2,7 @@
 #include "logger.hpp"
 
 int main() {
-    ndLogger log("program.log");
+    ndLogger program_log("program.log");
 
     const int SIZE = 10;
     float* A = (float*)malloc(SIZE*sizeof(float));
