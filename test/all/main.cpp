@@ -1,6 +1,5 @@
 #include "test_success.h"
 #include "test_case.hpp"
-#include <vector>
 
 TestSuite cocoa_application( "../cocoa_application/program.log", {
     {

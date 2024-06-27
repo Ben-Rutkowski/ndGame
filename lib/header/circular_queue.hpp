@@ -15,7 +15,7 @@ private:
     T  null_el;
     T* queue_array;
     size_t size, front, back;
-    bool full, empty;
+    bool   full, empty;
 
 
 // --- Initialization ---
@@ -36,6 +36,7 @@ public:
     }
 
     size_t getSize() { return size; }
+    bool   isEmpty() { return empty; }
 
 
 // --- Operations ---
@@ -74,7 +75,9 @@ public:
         }
     }
 
-    T& current();
+    T& current() {
+        return queue_array[back];
+    }
 
 
 // --- Internal Methods ---

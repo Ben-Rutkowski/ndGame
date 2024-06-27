@@ -1,7 +1,6 @@
 #ifndef TEST_CASE_HPP
 #define TEST_CASE_HPP
 
-#include "test_success.h"
 #include <initializer_list>
 #include <vector>
 #include <string>
