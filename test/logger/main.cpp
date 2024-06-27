@@ -18,9 +18,10 @@ int main() {
         }
     }
 
-    ndLog(LOG, "message");
-    ndLog(ERR, "error message");
-    ndLog(WAR, "warning message");
+    ndLog(LOG, "message", NULL);
+    ndLog(ERR, "error message", NULL);
+    ndLog(WAR, "warning message", NULL);
+    ndLog(LOG, "warning message %s, %d", "aa", 22);
     ndLogFast("fast One");
     ndLogFast("fast Two");
     ndLogFast("fast Three");
