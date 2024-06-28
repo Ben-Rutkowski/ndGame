@@ -127,6 +127,7 @@ TestSuite::TestSuite(std::string path,
 
 // ================ TestSuite: Evaluation ================
 void TestSuite::evaluate() {
+    // Open log
     std::ifstream program_log(program_log_path);
     if (!program_log.is_open()) {
         std::cerr << "Failed to open the log " << program_log_path 
@@ -134,11 +135,15 @@ void TestSuite::evaluate() {
         return;
     }
 
+    // Evaluate tests
     size_t pos;
     std::string line;
     std::string message;
     while (std::getline(program_log, line)) {
         pos = line.find("-SUC- ");
+        if (pos == std::string::npos)
+            pos = line.find("-ERR- ");
+
         if (pos != std::string::npos) {
             message = line.substr(pos+6);
 
@@ -148,6 +153,7 @@ void TestSuite::evaluate() {
         }
     }
 
+    // Print results
     for (int i=0; i<test_case_lists.size(); i++) {
         std::cout << test_case_lists[i].name() << " --- ";
         if (test_case_lists[i].didSucceed()) {

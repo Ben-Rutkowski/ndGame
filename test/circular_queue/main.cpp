@@ -1,7 +1,7 @@
 #include "circular_queue.hpp"
-#include "event_manager.hpp"
 #include "logger.hpp"
 #include "test_success.h"
+
 static ndLogger program_log("program.log");
 
 template<typename T>

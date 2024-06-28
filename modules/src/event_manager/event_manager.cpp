@@ -1,5 +1,6 @@
 #include "logger.hpp"
 #include "event_manager.hpp"
+#include "test_success.h"
 
 // ================ EventManager: Initialization ================
 EventManager::EventManager(int initial_queue_size)
@@ -44,5 +45,5 @@ void EventManager::propogateCurrentEvent() {
 
 // ================ EventManager: Static ================
 void EventManager::nullEventCallback(void*, ndEvent*) {
-    ndLog(ERR, "EventManager: No callback function set");
+    ndLog(ERR, MOD_EventManagerNullCallback);
 }
