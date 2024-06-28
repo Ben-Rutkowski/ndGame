@@ -2,7 +2,7 @@
 #include "logger.hpp"
 
 int main() {
-    ndLogger log("program.log");
+    ndLogger program_log("program.log");
 
     const int SIZE = 10;
     float* A = (float*)malloc(SIZE*sizeof(float));
@@ -18,9 +18,10 @@ int main() {
         }
     }
 
-    ndLog(LOG, "message");
-    ndLog(ERR, "error message");
-    ndLog(WAR, "warning message");
+    ndLog(LOG, "message", NULL);
+    ndLog(ERR, "error message", NULL);
+    ndLog(WAR, "warning message", NULL);
+    ndLog(LOG, "warning message %s, %d", "aa", 22);
     ndLogFast("fast One");
     ndLogFast("fast Two");
     ndLogFast("fast Three");

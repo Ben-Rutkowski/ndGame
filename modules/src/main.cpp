@@ -1,5 +1,8 @@
-#include <iostream>
+#include "logger.hpp"
+#include "application.hpp"
+
+static ndLogger log("program.log");
 
 int main() {
-    std::cout << "main function" << std::endl;
+    ndApplication nd_app;
 }

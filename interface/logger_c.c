@@ -1,6 +1,7 @@
 #include "logger.h"
 #include <pthread.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <sys/time.h>
 
 #define LOG_BUFFER_SIZE 10000
@@ -31,7 +32,7 @@ static struct timeval getDiffTime() {
     return diff_time;
 }
 
-static inline void log_message(const char* level, const char* message) {
+static inline void log_header(const char* level) {
     struct timeval diff_timeval; 
     struct tm*     diff_tm;
     
@@ -44,8 +45,24 @@ static inline void log_message(const char* level, const char* message) {
                 diff_tm->tm_sec, 
                 diff_timeval.tv_usec
             );
-    fprintf(Logger_log_file, "%s %s\n", level, message);
+    fprintf(Logger_log_file, "%s ", level);
 }
+
+// static inline void log_message(const char* level, const char* message) {
+//     struct timeval diff_timeval; 
+//     struct tm*     diff_tm;
+//     
+//     diff_timeval = getDiffTime();
+//     diff_tm = gmtime(&diff_timeval.tv_sec);
+// 
+//     fprintf(Logger_log_file, "[%i:%i:%i.%06u] ", 
+//                 diff_tm->tm_hour, 
+//                 diff_tm->tm_min, 
+//                 diff_tm->tm_sec, 
+//                 diff_timeval.tv_usec
+//             );
+//     fprintf(Logger_log_file, "%s %s\n", level, message);
+// }
 
 static const char* levelString(Logger_LogLevel level) {
     switch (level) {
@@ -81,7 +98,10 @@ void Logger_taredownLog() {
     printf("Log closed\n");
 }
 
-void ndLog(Logger_LogLevel level, const char* message) {
+void ndLog(Logger_LogLevel level, const char* message, ...) {
+    va_list args;
+    va_start(args, message);
+
     if (Logger_log_file == NULL) {
         perror("Failed to write to the log file: log file not open");
         return;
@@ -90,13 +110,16 @@ void ndLog(Logger_LogLevel level, const char* message) {
     const char* level_str = levelString(level);
 
     pthread_mutex_lock(&Logger_log_mutex);
-    log_message(level_str, message);
+    log_header(level_str);
+    vfprintf(Logger_log_file, message, args);
+    fprintf(Logger_log_file, "\n");
     fflush(Logger_log_file);
     pthread_mutex_unlock(&Logger_log_mutex);
 }
 
 void ndLogFast(const char* message) {
     pthread_mutex_lock(&Logger_log_mutex);
-    log_message("     ", message);
+    log_header("     ");
+    fprintf(Logger_log_file, "%s\n", message);
     pthread_mutex_unlock(&Logger_log_mutex);
 }

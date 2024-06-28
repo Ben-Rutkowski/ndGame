@@ -1,6 +1,5 @@
 include $(ROOT)/$(CONFIG_FILE)
-sub_DIR     =$(int_DIR)
-sub_HEADDIR =$(int_HEADDIR)
+sub_DIR =$(int_DIR) $(app_DIR) $(lib_DIR) $(mod_DIR)
 
 
 # === Units ===
@@ -13,11 +12,11 @@ sub_OBJ =$(call GetObjectsFilter,$(sub_DIR),$(test_OBJ))
 # === Compiler ===
 comp_unit =$(CXX)
 flag_unit =$(CXX_flag) -c
-inc_unit  =-I$(sub_HEADDIR)
+inc_unit  =-I$(int_DIR) -I$(app_DIR) -I$(lib_DIR) -I$(mod_DIR)
 
 comp_test =$(CXX)
 flag_test =$(CXX_flag)
-link_test =
+link_test =$(CXX_link)
 
 
 # === Build ===
