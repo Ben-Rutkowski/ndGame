@@ -19,7 +19,7 @@ extern struct timeval  Logger_init_time_micro;
 void Logger_initLog(const char* filename);
 void Logger_taredownLog();
 
-void ndLog(Logger_LogLevel level, const char* message);
+void ndLog(Logger_LogLevel level, const char* message, ...);
 void ndLogFast(const char* message);
 
 #endif
