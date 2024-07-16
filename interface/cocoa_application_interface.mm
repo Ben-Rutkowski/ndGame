@@ -2,7 +2,7 @@
 #import <AppKit/AppKit.h>
 #import "cocoa_application_interface.h"
 #import "AppDelegate.h"
-#include "logger.hpp"
+#include "logger.h"
 
 #include <iostream>
 

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "logger.hpp"
+#include "logger_wrapper.hpp"
 
 int main() {
     ndLogger program_log("program.log");

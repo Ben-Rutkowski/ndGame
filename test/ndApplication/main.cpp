@@ -1,6 +1,6 @@
 #include "application.hpp"
 #include "event_manager.hpp"
-#include "logger.hpp"
+#include "logger_wrapper.hpp"
 #include "test_success.h"
 static ndLogger program_log("program.log");
 
