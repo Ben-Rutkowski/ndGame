@@ -23,10 +23,10 @@ TestSuite event_manager( "../event_manager/program.log", {
     },
     {
         "Event Manager Linking and Polling",
-        UNIT_Success " event_one",
-        UNIT_Success " event_one",
-        UNIT_Success " event_two",
-        UNIT_Success " event_three",
+        TEST_OBJ_0,
+        TEST_OBJ_0,
+        TEST_OBJ_1,
+        TEST_OBJ_2
     }
 });
 
