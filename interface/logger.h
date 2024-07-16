@@ -1,6 +1,10 @@
 #ifndef LOGGER_C_H
 #define LOGGER_C_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <pthread.h>
 
@@ -21,5 +25,9 @@ void Logger_taredownLog();
 
 void ndLog(Logger_LogLevel level, const char* message, ...);
 void ndLogFast(const char* message);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
