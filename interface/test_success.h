@@ -4,6 +4,7 @@
 #define INT_SetAppDelegate  ":INT_SetAppDelegate:"
 #define APP_AppFinishLaunch ":APP_AppFinishLaunch:"
 #define MOD_EventManagerNullCallback ":EventManagerNullCallback:"
+#define MOD_InitApplication ":MOD_InitApplication:"
 
 #define UNIT_Success ":UNIT_Success:"
 #define UNIT_Failure ":UNIT_Failure:"

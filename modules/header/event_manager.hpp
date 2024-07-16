@@ -3,7 +3,6 @@
 
 #define DEFAULT_QUEUE_SIZE 32
 
-#include <iostream>
 #include "circular_queue.hpp"
 
 // ================ Enums ================

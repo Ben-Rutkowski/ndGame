@@ -30,8 +30,21 @@ TestSuite event_manager( "../event_manager/program.log", {
     }
 });
 
+TestSuite nd_application( "../ndApplication/program.log", {
+    {
+        "Initialize ndApplication",
+        MOD_InitApplication
+    },
+    {
+        "Event Queue Polling",
+        TEST_OBJ_0,
+        TEST_OBJ_1
+    },
+});
+
 int main() {
     cocoa_application.evaluate();
     circular_queue.evaluate();
     event_manager.evaluate();
+    nd_application.evaluate();
 }
