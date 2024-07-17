@@ -1,4 +1,5 @@
 #include "application.hpp"
+#include "cocoa_application_interface.h"
 #include "event_manager.hpp"
 #include "logger_wrapper.hpp"
 #include "test_success.h"
@@ -25,7 +26,9 @@ public:
 };
 
 int main() {
-    TEST_ndApplication ndApp;
-    ndApp.TEST_queueEvent();
-    ndApp.TEST_pollEvents();
+    TEST_ndApplication nd_app;
+    nd_app.TEST_queueEvent();
+    nd_app.TEST_pollEvents();
+    
+    // nd_app.startRunLoop();
 }

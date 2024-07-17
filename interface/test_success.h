@@ -3,6 +3,7 @@
 
 #define INT_SetAppDelegate  ":INT_SetAppDelegate:"
 #define APP_AppFinishLaunch ":APP_AppFinishLaunch:"
+#define APP_StartLoop ":APP_StartLoop:"
 #define MOD_EventManagerNullCallback ":EventManagerNullCallback:"
 #define MOD_InitApplication ":MOD_InitApplication:"
 

@@ -7,7 +7,8 @@
 
 // ================ Enums ================
 enum class ndEventType { NULLTYPE = 0,
-    DEBUG,
+    /* Application */ START_LOOP,
+    /* Other */       DEBUG,
 LEN };
 
 

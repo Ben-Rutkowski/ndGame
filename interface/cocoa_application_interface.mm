@@ -2,10 +2,11 @@
 #import <AppKit/AppKit.h>
 #import "cocoa_application_interface.h"
 #import "AppDelegate.h"
-#include "logger.h"
+#import "logger.h"
 
 #include <iostream>
 
+// ================ Cocoa Application ================
 void initCocoa() {
     AppDelegate* app_delegate = [[AppDelegate alloc] init];
     if (app_delegate == nil) {
@@ -37,4 +38,10 @@ void pollEventsCocoa() {
 
         [NSApp sendEvent:event];
     }
+}
+
+
+// ================ Windows ================
+void initWindowBlock() {
+    ndLog(SUC, "init Window Block");
 }
