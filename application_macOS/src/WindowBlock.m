@@ -1,8 +1,8 @@
 #include "logger.h"
-#import "ndWindow.h"
+#import "WindowBlock.h"
 #import "event_manager_interface.h"
 
-@implementation ndWindow
+@implementation WindowBlock
 
 - (instancetype) initWithFrame:(NSRect)frame 
                          title:(NSString *)title 

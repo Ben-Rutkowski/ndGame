@@ -2,7 +2,7 @@
 #include <Foundation/Foundation.h>
 #import "cocoa_application_interface.h"
 #import "AppDelegate.h"
-#import "ndWindow.h"
+#import "WindowBlock.h"
 #import "logger.h"
 
 #include "test_success.h"
@@ -58,26 +58,26 @@ void cocoaIntLinkEventManagerToWindow(int window,
                                    QueueEventCallback callback)
 {
     if (WINDOW_BLOCK_ARRAY != nil) {
-        ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
-        [nd_window.event_mananger_interface setEventManager:event_manager_ptr
-                                         queueEventCallback:callback];
+        WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
+        [window_block.event_mananger_interface setEventManager:event_manager_ptr
+                                            queueEventCallback:callback];
     }
 }
 
 void cocoaIntShowWindow(int window) {
     if (WINDOW_BLOCK_ARRAY != nil) {
-        ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
-        [nd_window.window makeKeyAndOrderFront:nil];
+        WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
+        [window_block.window makeKeyAndOrderFront:nil];
     }
 }
 
 int cocoaIntCreateWindow(int width, int height, const char* title) {
     NSRect    frame     = NSMakeRect(0, 0, width, height);
     NSString* title_s   = [NSString stringWithUTF8String:title];
-    ndWindow* nd_window = [[ndWindow alloc] initWithFrame:frame 
-                                                    title:title_s];
+    WindowBlock* window_block = [[WindowBlock alloc] initWithFrame:frame 
+                                                             title:title_s];
     if (WINDOW_BLOCK_ARRAY != nil) {
-        [WINDOW_BLOCK_ARRAY addObject:nd_window];
+        [WINDOW_BLOCK_ARRAY addObject:window_block];
     }
 
     return [WINDOW_BLOCK_ARRAY count] - 1;
@@ -85,8 +85,8 @@ int cocoaIntCreateWindow(int width, int height, const char* title) {
 
 int cocoaIntShouldWindowClose(int window) {
     if (WINDOW_BLOCK_ARRAY != nil) {
-        ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
-        return nd_window.window_delegate.ndclose_window == YES;
+        WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
+        return window_block.window_delegate.ndclose_window == YES;
     } else {
         return true;
     }

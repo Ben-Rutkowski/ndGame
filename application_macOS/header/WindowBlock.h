@@ -1,5 +1,5 @@
-#ifndef ND_WINDOW_COCOA_H
-#define ND_WINDOW_COCOA_H
+#ifndef WINDOW_BLOCK_COCOA_H
+#define WINDOW_BLOCK_COCOA_H
 
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
@@ -8,7 +8,7 @@
 #import "WindowDelegate.h"
 #import "View.h"
 
-@interface ndWindow : NSObject
+@interface WindowBlock : NSObject
 
 @property (atomic, strong, nonnull) NSWindow* window;
 @property (atomic, strong, nonnull) WindowDelegate* window_delegate;
