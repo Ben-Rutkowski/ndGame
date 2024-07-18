@@ -14,9 +14,9 @@
     return self;
 }
 
-- (void) windowWillClose:(NSNotification *)notification {
-    ndLog(LOG, "windowWillClose");
+- (void) windowWillClose:(NSNotification*)notification {
     [self setNdclose_window:YES];
+    ndLog(LOG, "windowWillClose");
 }
 
 @end

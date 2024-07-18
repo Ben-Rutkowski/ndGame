@@ -1,7 +1,4 @@
 ================ TODO ================
 - application macOS
-    - create test scripts to execute test programs and check if they have succeeded
-    - have a centralized page that has all of the success tags (e.g. :INT_AppLaunch:) when ever a success happens in the log, there will be a success tag before the message e.g. "[...] -SUC- :INT_AppLaunch". then have a script that launches a main.cpp in the test dir, and reads the program.log file to see if the expected successes happened. It will parse out the -SUC- tags and make a list in order of appearance. the tester script will have too lists, one which checks if each of the successes happened in order of the list, the other just looks for completion (it doesn't matter the order of successes just as long as its all there). Lastly, it is optional to have the success logs to be macro-ed out with a #ifdef so that build versions do not have test logs.
-    - this will go in to a test build call "all". it will take a header such that each test will be an object that has three attributes, two vectors of strings that have the order and unordered successes, and the name of the test build. there will be a header in interface that defines all the success macros
-    - e.g. `#define SUC_INT_AppLaunch "INT_AppLaunch"` then in the application, log `ndLog(SUC, SUC_INT_AppLaunch);`.
-    - the all build will take each one of these objects, run `make && ./.run.sh` inside each test build and then read the program.log to determine the success of the test (this could be templated in .myscripts)
+
+- test Makefile with clean so can quickly clean all object files

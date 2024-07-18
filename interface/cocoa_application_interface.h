@@ -10,10 +10,13 @@ void cocoaIntPollEvents();
 typedef void (*QueueEventCallback)(void*, unsigned int);
 
 void cocoaIntInitWindowBlockArray();
-int  cocoaIntCreateWindow(int width, int height, const char* title);
 void cocoaIntLinkEventManagerToWindow(int window, 
                                    void* event_manager_ptr, 
                                    QueueEventCallback callback);
+void cocoaIntShowWindow(int window);
+
+int cocoaIntCreateWindow(int width, int height, const char* title);
+int cocoaIntShouldWindowClose(int window);
 
 void* cocoaIntGetNdWindow(int window);
 

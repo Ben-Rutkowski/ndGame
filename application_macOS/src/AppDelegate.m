@@ -11,6 +11,7 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification*)notification {
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp activate];
 
     NSEvent* event = [NSEvent otherEventWithType:NSEventTypeApplicationDefined 
                                         location:NSMakePoint(0,0) 

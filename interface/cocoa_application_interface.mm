@@ -52,6 +52,24 @@ void cocoaIntInitWindowBlockArray() {
         ndLog(SUC, INT_InitWindowBlock);
     }
 }
+ 
+void cocoaIntLinkEventManagerToWindow(int window, 
+                                   void* event_manager_ptr, 
+                                   QueueEventCallback callback)
+{
+    if (WINDOW_BLOCK_ARRAY != nil) {
+        ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
+        [nd_window.event_mananger_interface setEventManager:event_manager_ptr
+                                         queueEventCallback:callback];
+    }
+}
+
+void cocoaIntShowWindow(int window) {
+    if (WINDOW_BLOCK_ARRAY != nil) {
+        ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
+        [nd_window.window makeKeyAndOrderFront:nil];
+    }
+}
 
 int cocoaIntCreateWindow(int width, int height, const char* title) {
     NSRect    frame     = NSMakeRect(0, 0, width, height);
@@ -64,15 +82,13 @@ int cocoaIntCreateWindow(int width, int height, const char* title) {
 
     return [WINDOW_BLOCK_ARRAY count] - 1;
 }
- 
-void cocoaIntLinkEventManagerToWindow(int window, 
-                                   void* event_manager_ptr, 
-                                   QueueEventCallback callback)
-{
+
+int cocoaIntShouldWindowClose(int window) {
     if (WINDOW_BLOCK_ARRAY != nil) {
         ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
-        [nd_window.event_mananger_interface setEventManager:event_manager_ptr
-                                         queueEventCallback:callback];
+        return nd_window.window_delegate.ndclose_window == YES;
+    } else {
+        return true;
     }
 }
 
