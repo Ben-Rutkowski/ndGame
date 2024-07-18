@@ -21,3 +21,8 @@ void TEST_1_ndWindow_showWindow(int window) {
     ndWindow* nd_window = (__bridge ndWindow*)getNdWindowCocoa(window);
     [nd_window.window makeKeyAndOrderFront:nil];
 }
+
+void TEST_2_ndWindow_queueEventFromWindow(int window, unsigned int type) {
+    ndWindow* nd_window = (__bridge ndWindow*)getNdWindowCocoa(window);
+    [nd_window.event_mananger_interface queueEvent:type];
+}

@@ -1,7 +1,12 @@
 #include "cocoa_application_interface.h"
+#include "event_manager.hpp"
 #include "logger_wrapper.hpp" 
 #include "window_cocoa_TEST.hpp"
 static ndLogger program_log("program.log");
+
+static void eventManagerPropogateEvents(void* ptr, ndEvent* event) {
+    ndLog(SUC, "%s", event->getTag());
+}
 
 int main() {
     initCocoa();
@@ -18,4 +23,14 @@ int main() {
     // while (true) {
     //     pollEventsCocoa();
     // }
+
+    EventManager event_manager;
+    event_manager.linkEventManager(nullptr, eventManagerPropogateEvents);
+ 
+    TEST_2_ndWindow_queueEventFromWindow(window_0, (unsigned int)ndEventType::DEBUG);
+
+    linkEventManagerToWindowCocoa(window_0, (void*)&event_manager, EventManager::queueEventCocoaCallback);
+    TEST_2_ndWindow_queueEventFromWindow(window_0, (unsigned int)ndEventType::DEBUG);
+    event_manager.pollEvents();
+
 }

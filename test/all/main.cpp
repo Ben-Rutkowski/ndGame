@@ -52,13 +52,18 @@ TestSuite nd_application( "../ndApplication/program.log", {
 
 TestSuite nd_window( "../ndWindow/program.log", {
     {
+        "ndWindow Comparisions",
+        UNIT_Success
+    },
+    {
         "Initialization Window Delegates",
         APP_InitWindowDelegate,
         APP_InitWindowDelegate
     },
     {
-        "ndWindow Comparisions",
-        UNIT_Success
+        "ndWindow and EventManagerInterface",
+        INT_EventManagerInterfaceNullCallback,
+        TEST_OBJ_COCOA
     }
 });
 

@@ -64,7 +64,19 @@ int createWindowCocoa(int width, int height, const char* title) {
 
     return [WINDOW_BLOCK_ARRAY count] - 1;
 }
+ 
+void linkEventManagerToWindowCocoa(int window, 
+                                   void* event_manager_ptr, 
+                                   QueueEventCallback callback)
+{
+    if (WINDOW_BLOCK_ARRAY != nil) {
+        ndWindow* nd_window = WINDOW_BLOCK_ARRAY[window];
+        [nd_window.event_mananger_interface setEventManager:event_manager_ptr
+                                         queueEventCallback:callback];
+    }
+}
 
 void* getNdWindowCocoa(int window) {
     return (__bridge void*)WINDOW_BLOCK_ARRAY[window];
 }
+
