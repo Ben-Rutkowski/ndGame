@@ -1,9 +1,8 @@
 #ifndef EVENT_MANAGER_INTERFACE_H
 #define EVENT_MANAGER_INTERFACE_H
 
+#import "cocoa_application_interface.h"
 #import <Foundation/Foundation.h>
-
-typedef void (*QueueEventCallback)(void*, unsigned int);
 
 @interface EventManagerInterface : NSObject
 

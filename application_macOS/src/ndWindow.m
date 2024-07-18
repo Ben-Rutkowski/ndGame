@@ -1,5 +1,6 @@
 #include "logger.h"
 #import "ndWindow.h"
+#import "event_manager_interface.h"
 
 @implementation ndWindow
 
@@ -30,6 +31,9 @@
         [_window.contentView addSubview:_view];
 
         // --- Render Switcher ---
+
+        // --- Event Manager Interface ---
+        _event_mananger_interface = [[EventManagerInterface alloc] init];
     }
 
     return self;

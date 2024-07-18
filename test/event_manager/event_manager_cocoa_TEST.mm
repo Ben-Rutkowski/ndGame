@@ -1,4 +1,5 @@
 #import "event_manager_cocoa_TEST.hpp"
+#include "cocoa_application_interface.h"
 #import "event_manager_interface.h"
 
 static EventManagerInterface* event_manager_interface;
@@ -11,7 +12,7 @@ void TEST_0_EventManagerInterface_nullCallback() {
     [event_manager_interface queueEvent:0]; 
 }
 
-void TEST_1_EventManagerInterface_setEventManagerCallback(void* event_manager_ptr, CALLBACK_0 callback) {
+void TEST_1_EventManagerInterface_setEventManagerCallback(void* event_manager_ptr, QueueEventCallback callback) {
     [event_manager_interface setEventManager:event_manager_ptr queueEventCallback:callback];
 }
 
