@@ -8,7 +8,10 @@
 {
     self = [super init];
     if (self) {
-        NSWindowStyleMask style = NSWindowStyleMaskClosable | NSWindowStyleMaskTitled | NSWindowStyleMaskResizable; 
+        NSWindowStyleMask style = NSWindowStyleMaskClosable | 
+                                  NSWindowStyleMaskTitled | 
+                                  NSWindowStyleMaskResizable; 
+
         _window = [[NSWindow alloc] initWithContentRect:frame 
                                               styleMask:style 
                                                 backing:NSBackingStoreBuffered 
@@ -21,6 +24,10 @@
         [_window setDelegate:_window_delegate];
 
         // --- View ---
+        id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+        _view = [[View alloc] initWithFrame:frame 
+                                          device:device];
+        [_window.contentView addSubview:_view];
 
         // --- Render Switcher ---
     }

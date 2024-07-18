@@ -3,6 +3,7 @@
 
 #define INT_SetAppDelegate ":INT_SetAppDelegate:"
 #define INT_InitWindowBlock ":INT_InitWindowBlock:"
+#define INT_EventManagerInterfaceNullCallback ":INT_EventManagerInterfaceNullCallback:"
 
 #define APP_AppFinishLaunch ":APP_AppFinishLaunch:"
 #define APP_StartLoop ":APP_StartLoop:"
@@ -18,5 +19,6 @@
 #define TEST_OBJ_1 ":TEST_OBJ_1:"
 #define TEST_OBJ_2 ":TEST_OBJ_2:"
 #define TEST_OBJ_3 ":TEST_OBJ_3:"
+#define TEST_OBJ_COCOA ":TEST_OBJ_COCOA:"
 
 #endif

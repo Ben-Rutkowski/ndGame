@@ -16,3 +16,8 @@ void TEST_0_ndWindow_compareWindowSize(int window, int comp_width, int comp_heig
         ndLog(SUC, UNIT_Failure);
     }
 }
+
+void TEST_1_ndWindow_showWindow(int window) {
+    ndWindow* nd_window = (__bridge ndWindow*)getNdWindowCocoa(window);
+    [nd_window.window makeKeyAndOrderFront:nil];
+}

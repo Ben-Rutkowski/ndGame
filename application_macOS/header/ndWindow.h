@@ -5,13 +5,17 @@
 #import <Foundation/Foundation.h>
 
 #import "WindowDelegate.h"
+#import "View.h"
 
 @interface ndWindow : NSObject
+
 @property (atomic, strong, nonnull) NSWindow* window;
 @property (atomic, strong, nonnull) WindowDelegate* window_delegate;
+@property (atomic, strong, nonnull) View* view;
 
 - (nonnull instancetype) initWithFrame:(NSRect)frame 
                                  title:(nonnull NSString*)title;
+
 @end
 
 #endif

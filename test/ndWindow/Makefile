@@ -5,10 +5,12 @@ sub_HEADDIR =$(all_HEADDIR)
 
 # === Units ===
 test_SRC  =$(call FirstOrderSource,$(CURDIR),.cpp) 
-test_SRCOBJCPP =$(call FirstOrderSource,$(CURDIR),.mm) 
 test_HEAD =$(call FirstOrderSource,$(CURDIR),.hpp) 
 test_OBJ  =$(call SourceToObject,$(test_SRC),$(obj_DIR))
-test_OBJOBJCPP =$(call SourceToObject,$(test_SRCOBJCPP),$(obj_DIR))
+
+test_OBJOBJCPP  =$(call SourceToObject,$(test_SRCOBJCPP),$(obj_DIR))
+test_SRCOBJCPP  =$(call FirstOrderSource,$(CURDIR),.mm) 
+test_HEADOBJCPP =$(call FirstOrderSource,$(CURDIR),.hpp) 
 
 sub_OBJ =$(call GetObjectsFilter,$(sub_DIR),$(test_OBJ))
 
