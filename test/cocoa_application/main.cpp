@@ -4,6 +4,6 @@
 static ndLogger program_log("program.log");
 
 int main() {
-    initCocoa();
-    pollEventsCocoa();
+    cocoaIntInit();
+    cocoaIntPollEvents();
 }

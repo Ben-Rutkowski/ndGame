@@ -9,12 +9,12 @@ static void eventManagerPropogateEvents(void* ptr, ndEvent* event) {
 }
 
 int main() {
-    initCocoa();
-    pollEventsCocoa();
-    initWindowBlockArrayCocoa();
+    cocoaIntInit();
+    cocoaIntPollEvents();
+    cocoaIntInitWindowBlockArray();
 
-    int window_0 = createWindowCocoa(800, 600, "ndWindow Test 0");
-    int window_1 = createWindowCocoa(400, 200, "ndWindow Test 1");
+    int window_0 = cocoaIntCreateWindow(800, 600, "ndWindow Test 0");
+    int window_1 = cocoaIntCreateWindow(400, 200, "ndWindow Test 1");
 
     TEST_0_ndWindow_compareWindowSize(window_0, 800, 600);
     TEST_0_ndWindow_compareWindowSize(window_1, 400, 200);
@@ -29,7 +29,7 @@ int main() {
  
     TEST_2_ndWindow_queueEventFromWindow(window_0, (unsigned int)ndEventType::DEBUG);
 
-    linkEventManagerToWindowCocoa(window_0, (void*)&event_manager, EventManager::queueEventCocoaCallback);
+    cocoaIntLinkEventManagerToWindow(window_0, (void*)&event_manager, EventManager::queueEventCocoaCallback);
     TEST_2_ndWindow_queueEventFromWindow(window_0, (unsigned int)ndEventType::DEBUG);
     event_manager.pollEvents();
 

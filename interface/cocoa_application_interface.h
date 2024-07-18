@@ -2,19 +2,19 @@
 #define COCOA_APPLICATION_INTERFACE_H
 
 // ================ Cocoa Application ================
-void initCocoa();
-void pollEventsCocoa();
+void cocoaIntInit();
+void cocoaIntPollEvents();
 
 
 // ================ Windows ================
 typedef void (*QueueEventCallback)(void*, unsigned int);
 
-void initWindowBlockArrayCocoa();
-int  createWindowCocoa(int width, int height, const char* title);
-void linkEventManagerToWindowCocoa(int window, 
+void cocoaIntInitWindowBlockArray();
+int  cocoaIntCreateWindow(int width, int height, const char* title);
+void cocoaIntLinkEventManagerToWindow(int window, 
                                    void* event_manager_ptr, 
                                    QueueEventCallback callback);
 
-void* getNdWindowCocoa(int window);
+void* cocoaIntGetNdWindow(int window);
 
 #endif
