@@ -1,9 +1,13 @@
 #ifndef TEST_SUCCESS_H
 #define TEST_SUCCESS_H
 
-#define INT_SetAppDelegate  ":INT_SetAppDelegate:"
+#define INT_SetAppDelegate ":INT_SetAppDelegate:"
+#define INT_InitWindowBlock ":INT_InitWindowBlock:"
+
 #define APP_AppFinishLaunch ":APP_AppFinishLaunch:"
 #define APP_StartLoop ":APP_StartLoop:"
+#define APP_InitWindowDelegate ":APP_InitWindowDelegate:"
+
 #define MOD_EventManagerNullCallback ":EventManagerNullCallback:"
 #define MOD_InitApplication ":MOD_InitApplication:"
 

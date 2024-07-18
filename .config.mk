@@ -47,7 +47,7 @@ bld_NAME =ndGame_DEBUG
 
 # ================ Compiler ================
 COMMON_flag =-Wall -fdiagnostics-color=always -g
-COMMON_link =-framework AppKit
+COMMON_link =-framework AppKit -framework Metal
 
 CXX 	 =clang++
 CXX_flag =$(COMMON_flag) -std=c++20
@@ -59,7 +59,7 @@ CC_link =$(COMMON_link)
 
 CCOBJ      =clang
 CCOBJ_flag =$(COMMON_flag)
-CCOBJ_link  =$(COMMON_link)
+CCOBJ_link =$(COMMON_link)
 
 
 # --- Macros ---

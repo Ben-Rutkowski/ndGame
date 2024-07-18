@@ -42,9 +42,22 @@ TestSuite nd_application( "../ndApplication/program.log", {
     },
 });
 
+TestSuite nd_window( "../ndWindow/program.log", {
+    {
+        "Initialization Window Delegates",
+        APP_InitWindowDelegate,
+        APP_InitWindowDelegate
+    },
+    {
+        "ndWindow Comparisions",
+        UNIT_Success
+    }
+});
+
 int main() {
     cocoa_application.evaluate();
     circular_queue.evaluate();
     event_manager.evaluate();
     nd_application.evaluate();
+    nd_window.evaluate();
 }

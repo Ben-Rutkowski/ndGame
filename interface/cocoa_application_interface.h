@@ -7,7 +7,9 @@ void pollEventsCocoa();
 
 
 // ================ Windows ================
-void initWindowBlock();
-int createWindow();
+void initWindowBlockArrayCocoa();
+int  createWindowCocoa(int width, int height, const char* title);
+
+void* getNdWindowCocoa(int window);
 
 #endif
