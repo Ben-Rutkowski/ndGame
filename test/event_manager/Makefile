@@ -7,13 +7,16 @@ sub_HEADDIR =$(all_HEADDIR)
 test_SRC =$(call FirstOrderSource,$(CURDIR),.cpp) 
 test_OBJ =$(call SourceToObject,$(test_SRC),$(obj_DIR))
 
+test_SRCOBJCPP =$(call FirstOrderSource,$(CURDIR),.mm) 
+test_OBJOBJCPP =$(call SourceToObject,$(test_SRCOBJCPP),$(obj_DIR))
+
 sub_OBJ =$(call GetObjectsFilter,$(sub_DIR),$(test_OBJ))
 
 
 # === Compiler ===
 comp_unit =$(CXX)
 flag_unit =$(CXX_flag) -c
-inc_unit  =$(patsubst %,-I%,$(sub_HEADDIR))
+inc_unit  =-I$(CURDIR) $(patsubst %,-I%,$(sub_HEADDIR))
 
 comp_test =$(CXX)
 flag_test =$(CXX_flag)
@@ -21,12 +24,16 @@ link_test =$(CXX_link)
 
 
 # === Build ===
-test: $(obj_DIR) $(test_OBJ) $(sub_OBJ)
+test: $(obj_DIR) $(test_OBJ) $(test_OBJOBJCPP) $(sub_OBJ)
 	@echo "--- Linking Test Case ---"
-	$(comp_test) $(test_OBJ) $(sub_OBJ) $(flag_test) $(inc_test) $(link_test) -o $@
+	$(comp_test) $(test_OBJ) $(test_OBJOBJCPP) $(sub_OBJ) $(flag_test) $(inc_test) $(link_test) -o $@
 
 .SECONDEXPANSION:
 $(test_OBJ): $(obj_DIR)/%.o: $(call NameToSource,%,$(test_SRC),.cpp)
+	@echo "--- Compiling Test Object <$(notdir $<)> ---"
+	$(comp_unit) $< $(flag_unit) $(inc_unit) -o $@
+
+$(test_OBJOBJCPP): $(obj_DIR)/%.o: $(call NameToSource,%,$(test_SRCOBJCPP),.mm)
 	@echo "--- Compiling Test Object <$(notdir $<)> ---"
 	$(comp_unit) $< $(flag_unit) $(inc_unit) -o $@
 

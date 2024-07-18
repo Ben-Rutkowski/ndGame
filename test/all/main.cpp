@@ -22,11 +22,19 @@ TestSuite event_manager( "../event_manager/program.log", {
         MOD_EventManagerNullCallback
     },
     {
+        "Event Manager Interface Null Callback",
+        INT_EventManagerInterfaceNullCallback
+    },
+    {
         "Event Manager Linking and Polling",
         TEST_OBJ_0,
         TEST_OBJ_0,
         TEST_OBJ_1,
         TEST_OBJ_2
+    },
+    {
+        "Event Manager Interface Linking and Polling",
+        TEST_OBJ_COCOA
     }
 });
 
@@ -36,7 +44,7 @@ TestSuite nd_application( "../ndApplication/program.log", {
         MOD_InitApplication
     },
     {
-        "Event Queue Polling",
+        "ndApplication Event Queue Polling",
         TEST_OBJ_0,
         TEST_OBJ_1
     },

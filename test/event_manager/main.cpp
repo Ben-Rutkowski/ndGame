@@ -1,3 +1,4 @@
+#include "event_manager_cocoa_TEST.hpp"
 #include "test_success.h"
 #include "event_manager.hpp"
 #include "logger_wrapper.hpp"
@@ -27,5 +28,11 @@ int main() {
     event_manager.queueEvent(event_0);
     event_manager.queueEvent(event_1);
     event_manager.queueEvent(event_2);
+    event_manager.pollEvents();
+
+    TEST_init();
+    TEST_0_EventManagerInterface_nullCallback();
+    TEST_1_EventManagerInterface_setEventManagerCallback(&event_manager, EventManager::queueEventCocoaCallback);
+    TEST_2_EventManagerInterface_queueEvent((unsigned int)ndEventType::DEBUG);
     event_manager.pollEvents();
 }

@@ -47,3 +47,14 @@ void EventManager::propogateCurrentEvent() {
 void EventManager::nullEventCallback(void*, ndEvent*) {
     ndLog(ERR, MOD_EventManagerNullCallback);
 }
+
+void EventManager::queueEventCocoaCallback(void* ptr, unsigned int type) {
+    EventManager* event_manager_ptr = (EventManager*)ptr;
+    switch (type) {
+        case (unsigned int)ndEventType::DEBUG: {
+            event_manager_ptr->queueEvent(ndEvent(ndEventType::DEBUG, TEST_OBJ_COCOA));
+            break;
+        }
+        default: break;
+    }
+}

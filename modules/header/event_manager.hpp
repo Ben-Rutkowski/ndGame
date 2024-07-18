@@ -76,6 +76,7 @@ private:
 // --- Static ---
 public:
     static void nullEventCallback(void*, ndEvent*);
+    static void queueEventCocoaCallback(void*, unsigned int);
 
 };
 
