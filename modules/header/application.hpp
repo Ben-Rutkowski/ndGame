@@ -2,17 +2,21 @@
 #define APPLICATION_HPP
 
 #include "event_manager.hpp"
+#include "window.hpp"
 
 class ndApplication {
 
 // --- Attributes ---
 protected:
     EventManager event_manager;
+    ndWindow* nd_window;
 
 
 // --- Initialization ---
 public:
     ndApplication();
+    ~ndApplication();
+    void linkWindow(ndWindow* ptr);
 
 
 // --- Runtime ---

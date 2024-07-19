@@ -3,6 +3,7 @@
 #include "event_manager.hpp"
 #include "logger_wrapper.hpp"
 #include "test_success.h"
+#include "window.hpp"
 static ndLogger program_log("program.log");
 
 class TEST_ndApplication : public ndApplication {
@@ -25,10 +26,17 @@ public:
     }
 };
 
+static TEST_ndApplication nd_app;
+
 int main() {
-    TEST_ndApplication nd_app;
     nd_app.TEST_queueEvent();
     nd_app.TEST_pollEvents();
-    
+     
+    cocoaIntInit();
+    cocoaIntInitWindowBlockArray();
+
+    ndWindow* nd_window = new ndWindow(800, 600, "TEST Window 0");
+    nd_app.linkWindow(nd_window);
+
     // nd_app.startRunLoop();
 }

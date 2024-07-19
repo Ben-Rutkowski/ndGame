@@ -3,10 +3,22 @@
 #include "test_success.h"
 
 // ================ Initialization ================
-ndApplication::ndApplication() {
+ndApplication::ndApplication() 
+:nd_window(nullptr)
+{
     ndLog(SUC, MOD_InitApplication);
 
     event_manager.linkEventManager((void*)this, ndApplication::eventCallback);
+}
+
+ndApplication::~ndApplication() {
+    delete nd_window;
+}
+
+void ndApplication::linkWindow(ndWindow *ptr) {
+    if (!nd_window) {
+        nd_window = ptr;
+    }
 }
 
 

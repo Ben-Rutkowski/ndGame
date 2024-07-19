@@ -1,3 +1,4 @@
+#include "cocoa_application_interface.h"
 #include "logger.h"
 #include "event_manager.hpp"
 #include "application.hpp"
@@ -10,8 +11,12 @@ void ndApplication::startRunLoop() {
     );
     event_manager.pollEvents();
 
-    while (true) {
-        std::cout << "loop" << std::endl;
-        break;
+    if (!nd_window) {
+        ndLog(ERR, "No Window Linked to ndApplication");
+        return;
+    }
+
+    while (!nd_window->shouldClose()) {
+        cocoaIntPollEvents();
     }
 }

@@ -23,7 +23,7 @@ static void NullQueueEventCallback(void* ptr, unsigned int type) {
 }
 
 - (void) setEventManager:(void*)event_manager_ptr
-         queueEventCallback:(QueueEventCallback)queue_event
+      queueEventCallback:(QueueEventCallback)queue_event
 {
     _event_manager = event_manager_ptr;
     _queue_event_callback = queue_event;

@@ -50,6 +50,17 @@ TestSuite nd_application( "../ndApplication/program.log", {
     },
 });
 
+TestSuite nd_window( "../ndWindow/program.log", {
+    {
+        "ndWindow Initialize Window",
+        MOD_CreateNdWindow
+    },
+    {
+        "ndWindow EventManagerInterface connection",
+        TEST_OBJ_COCOA
+    }
+});
+
 TestSuite cocoa_window_block( "../cocoa_window_block/program.log", {
     {
         "WindowBlock Comparisions",
@@ -72,5 +83,6 @@ int main() {
     circular_queue.evaluate();
     event_manager.evaluate();
     nd_application.evaluate();
+    nd_window.evaluate();
     cocoa_window_block.evaluate();
 }

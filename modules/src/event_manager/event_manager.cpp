@@ -7,7 +7,7 @@ EventManager::EventManager(int initial_queue_size)
 :event_queue(initial_queue_size, ndEvent(ndEventType::NULLTYPE)),
  event_callback(EventManager::nullEventCallback) {}
 
-void EventManager::linkEventManager(void *ptr, EVENT_CALLBACK callback) {
+void EventManager::linkEventManager(void* ptr, EVENT_CALLBACK callback) {
     event_callback = callback;
     obj_ptr = ptr;
 }

@@ -7,7 +7,7 @@
 @interface EventManagerInterface : NSObject
 
 - (void) setEventManager:(void*)event_manager_ptr
-         queueEventCallback:(QueueEventCallback)queue_event;
+      queueEventCallback:(QueueEventCallback)queue_event;
 
 - (void) queueEvent:(unsigned int)type;
 

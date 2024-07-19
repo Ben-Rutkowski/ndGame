@@ -11,6 +11,8 @@
 
 #define MOD_EventManagerNullCallback ":EventManagerNullCallback:"
 #define MOD_InitApplication ":MOD_InitApplication:"
+#define MOD_CreateNdWindow ":MOD_CreateNdWindow:"
+#define MOD_NoNdModuleSet ":MOD_NoNdModuleSet:"
 
 #define UNIT_Success ":UNIT_Success:"
 #define UNIT_Failure ":UNIT_Failure:"

@@ -1,5 +1,4 @@
 #import <AppKit/AppKit.h>
-#include <Foundation/Foundation.h>
 #import "cocoa_application_interface.h"
 #import "AppDelegate.h"
 #import "WindowBlock.h"
@@ -47,7 +46,10 @@ void cocoaIntPollEvents() {
 static NSMutableArray* WINDOW_BLOCK_ARRAY = nil;
 
 void cocoaIntInitWindowBlockArray() {
-    WINDOW_BLOCK_ARRAY = [[NSMutableArray alloc] init];
+    if (WINDOW_BLOCK_ARRAY == nil) {
+        WINDOW_BLOCK_ARRAY = [[NSMutableArray alloc] init];
+    }
+
     if (WINDOW_BLOCK_ARRAY != nil) {
         ndLog(SUC, INT_InitWindowBlock);
     }

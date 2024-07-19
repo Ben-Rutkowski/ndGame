@@ -1,4 +1,5 @@
 ================ TODO ================
 - application macOS
+- ndModule (so runEvent(ndEvent*) will have a null callback and won't break by calling nullptrs)
 
 - test Makefile with clean so can quickly clean all object files
