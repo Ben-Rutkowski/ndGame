@@ -11,11 +11,6 @@ void ndApplication::startRunLoop() {
     );
     event_manager.pollEvents();
 
-    if (!nd_window) {
-        ndLog(ERR, "No Window Linked to ndApplication");
-        return;
-    }
-
     while (!nd_window->shouldClose()) {
         cocoaIntPollEvents();
     }

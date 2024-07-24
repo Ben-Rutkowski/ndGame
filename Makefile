@@ -1,6 +1,6 @@
 include .config.mk
-all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR) $(app_OBJDIR)
-all_NAME   =mod int app
+all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR) $(lib_OBJDIR) $(app_OBJDIR)
+all_NAME   =mod int lib app
 
 
 # === Units ===
@@ -21,8 +21,11 @@ $(bld_DIR)/$(bld_NAME): $(all_NAME)
 app:
 	$(call RecurMake,$(app_DIR),)
 
-# lib:
-# 	$(call RecurMake,$(lib_DIR),)
+int:
+	$(call RecurMake,$(int_DIR),)
+
+lib:
+	$(call RecurMake,$(lib_DIR),)
 
 mod:
 	$(call RecurMake,$(mod_DIR),)
@@ -30,17 +33,14 @@ mod:
 # shd:
 # 	$(call RecurMake,$(shd_DIR),)
 
-int:
-	$(call RecurMake,$(int_DIR),)
-
 
 # === Directory Management ===
 clean:
 	$(call RecurMake,$(app_DIR),clean)
-# 	$(call RecurMake,$(lib_DIR),clean)
+	$(call RecurMake,$(int_DIR),clean)
+	$(call RecurMake,$(lib_DIR),clean)
 	$(call RecurMake,$(mod_DIR),clean)
 #	$(call RecurMake,$(shd_DIR),clean)
-	$(call RecurMake,$(int_DIR),clean)
 
 	@echo "--- Cleaning Build ---"
 	rm -f $(bld_DIR)/$(bld_NAME)

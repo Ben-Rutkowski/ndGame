@@ -78,6 +78,13 @@ TestSuite cocoa_window_block( "../cocoa_window_block/program.log", {
     }
 });
 
+TestSuite vector_math( "../math/program.log", {
+    {
+        "Vector and Matrix Tests",
+        UNIT_Success
+    }
+});
+
 int main() {
     cocoa_application.evaluate();
     circular_queue.evaluate();
@@ -85,4 +92,5 @@ int main() {
     nd_application.evaluate();
     nd_window.evaluate();
     cocoa_window_block.evaluate();
+    vector_math.evaluate();
 }

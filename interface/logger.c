@@ -32,7 +32,18 @@ static struct timeval getDiffTime() {
     return diff_time;
 }
 
-static inline void log_header(const char* level) {
+static const char* levelString(Logger_LogLevel level) {
+    switch (level) {
+        case EMP: return "     ";
+        case LOG: return "-   -";
+        case ERR: return "-ERR-";
+        case WAR: return "-WAR-";
+        case SUC: return "-SUC-";
+        default:  return "-NUL-";
+    }
+}
+
+static inline void log_header(Logger_LogLevel level) {
     struct timeval diff_timeval; 
     struct tm*     diff_tm;
     
@@ -45,35 +56,19 @@ static inline void log_header(const char* level) {
                 diff_tm->tm_sec, 
                 diff_timeval.tv_usec
             );
-    fprintf(Logger_log_file, "%s ", level);
+
+    const char* level_str = levelString(level);
+    fprintf(Logger_log_file, "%s ", level_str);
 }
 
-// static inline void log_message(const char* level, const char* message) {
-//     struct timeval diff_timeval; 
-//     struct tm*     diff_tm;
-//     
-//     diff_timeval = getDiffTime();
-//     diff_tm = gmtime(&diff_timeval.tv_sec);
-// 
-//     fprintf(Logger_log_file, "[%i:%i:%i.%06u] ", 
-//                 diff_tm->tm_hour, 
-//                 diff_tm->tm_min, 
-//                 diff_tm->tm_sec, 
-//                 diff_timeval.tv_usec
-//             );
-//     fprintf(Logger_log_file, "%s %s\n", level, message);
-// }
-
-static const char* levelString(Logger_LogLevel level) {
-    switch (level) {
-        case LOG: return "-   -";
-        case ERR: return "-ERR-";
-        case WAR: return "-WAR-";
-        case SUC: return "-SUC-";
-        default:  return "-NUL-";
+static inline void log_preamble(Logger_LogLevel level) {
+    if (Logger_log_file == NULL) {
+        perror("Failed to write to the log file: log file not open");
+        return;
     }
-}
 
+    log_header(level);
+}
 
 // ================ Global Functions ================
 void Logger_initLog(const char *filename) {
@@ -98,28 +93,63 @@ void Logger_taredownLog() {
     printf("Log closed\n");
 }
 
+void ndLogFast(const char* message) {
+    pthread_mutex_lock(&Logger_log_mutex);
+    log_header(EMP);
+    fprintf(Logger_log_file, "%s\n", message);
+    pthread_mutex_unlock(&Logger_log_mutex);
+}
+
 void ndLog(Logger_LogLevel level, const char* message, ...) {
     va_list args;
     va_start(args, message);
 
-    if (Logger_log_file == NULL) {
-        perror("Failed to write to the log file: log file not open");
-        return;
-    }
-
-    const char* level_str = levelString(level);
-
     pthread_mutex_lock(&Logger_log_mutex);
-    log_header(level_str);
+    log_preamble(level);
     vfprintf(Logger_log_file, message, args);
     fprintf(Logger_log_file, "\n");
     fflush(Logger_log_file);
     pthread_mutex_unlock(&Logger_log_mutex);
 }
 
-void ndLogFast(const char* message) {
+void ndLogVec(Logger_LogLevel level, float* array_ptr, int N) {
     pthread_mutex_lock(&Logger_log_mutex);
-    log_header("     ");
-    fprintf(Logger_log_file, "%s\n", message);
+    log_preamble(level);
+    fprintf(Logger_log_file, "[ ");
+    for (int i=0; i<N-1; i++) {
+        fprintf(Logger_log_file, "%.3f, ", array_ptr[i]);
+    }
+    fprintf(Logger_log_file, "%.3f ]\n", array_ptr[N-1]);
+    pthread_mutex_unlock(&Logger_log_mutex);
+}
+
+void ndLogVeci(Logger_LogLevel level, int* array_ptr, int N) {
+    pthread_mutex_lock(&Logger_log_mutex);
+    log_preamble(level);
+    fprintf(Logger_log_file, "[ ");
+    for (int i=0; i<N-1; i++) {
+        fprintf(Logger_log_file, "%i, ", array_ptr[i]);
+    }
+    fprintf(Logger_log_file, "%i ]\n", array_ptr[N-1]);
+    pthread_mutex_unlock(&Logger_log_mutex);
+}
+
+static inline void printMatRow(float* array_ptr, int i, int M, int N) {
+    fprintf(Logger_log_file, "[ ");
+    for (int j=0; j<N-1; j++) {
+        fprintf(Logger_log_file, "%.3f, ", array_ptr[i + j*M]);
+    }
+    fprintf(Logger_log_file, "%.3f ]", array_ptr[i + (N-1)*M]);
+}
+
+void ndLogMat(Logger_LogLevel level, float* array_ptr, int M, int N) {
+    pthread_mutex_lock(&Logger_log_mutex);
+    log_preamble(level);
+    for (int i=0; i<M-1; i++) {
+        printMatRow(array_ptr, i, M, N);
+        fprintf(Logger_log_file, "\n%21s", " ");
+    }
+    printMatRow(array_ptr, M-1, M, N);
+    fprintf(Logger_log_file, "\n");
     pthread_mutex_unlock(&Logger_log_mutex);
 }

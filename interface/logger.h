@@ -9,7 +9,7 @@ extern "C" {
 #include <pthread.h>
 
 typedef enum Logger_LogLevel{
-    LOG, ERR, WAR, SUC
+    EMP, LOG, ERR, WAR, SUC
 } Logger_LogLevel;
 
 
@@ -25,6 +25,10 @@ void Logger_taredownLog();
 
 void ndLog(Logger_LogLevel level, const char* message, ...);
 void ndLogFast(const char* message);
+
+void ndLogVec(Logger_LogLevel level, float* array_ptr, int N);
+void ndLogVeci(Logger_LogLevel level, int* array_ptr, int N);
+void ndLogMat(Logger_LogLevel level, float* array_ptr, int M, int N);
 
 #ifdef __cplusplus
 }
