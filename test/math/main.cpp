@@ -6,9 +6,25 @@ static ndLogger program_log("program.log");
 
 template<typename T>
 static void compare(const T* val_0, const T* val_1) {
-    bool success = std::memcmp(val_0, val_1, sizeof(T));
+    bool success = !std::memcmp(val_0, val_1, sizeof(T));
 
-    if (!success) {
+    if (success) {
+        ndLog(SUC, UNIT_Success);
+    } else {
+        ndLog(SUC, UNIT_Failure);
+    }
+}
+
+static void compareFloatVec(float* val_0, float* val_1, size_t size, float TOL=1e-2) {
+    bool success = true;
+    for (int i=0; i<size; i++) {
+        if (abs(val_0[i] - val_1[i]) > TOL) {
+            success = false;
+            break;
+        }
+    }
+
+    if (success) {
         ndLog(SUC, UNIT_Success);
     } else {
         ndLog(SUC, UNIT_Failure);
@@ -40,7 +56,7 @@ int main() {
     f_ans = 40.0f;
     compare<float>(&f, &f_ans);
 
-    f = a.L2_Squared();
+    f = a.dot(a);
     f_ans = 30.0f;
     compare<float>(&f, &f_ans);
 
@@ -59,7 +75,7 @@ int main() {
 
     // ================ Matrices ================
     vec3 v, w, w_ans;
-    mat2 A, A_ans;
+    mat2 A, E, F, A_ans;
     mat3 B, C, D, D_ans;
 
     A = {
@@ -109,11 +125,34 @@ int main() {
     };
     compare<mat3>(&D, &D_ans);
 
-    v = {
-        3.0f, 1.0f, 0.0f
+    A = {
+        1.0f, 3.0f,
+        2.0f, 4.0f
     };
+    E = {
+        5.0f, 3.0f,
+        1.0f, 2.0f
+    };
+
+    F = A*E;
+    A_ans = {
+        11.0f, 27.0f,
+        5.0f,  11.0f
+    };
+    compare<mat2>(&F, &A_ans);
+
+    v = { 3.0f, 1.0f, 0.0f };
 
     w = B*v;
     w_ans = { 5.0f, 11.0f, 10.0f };
     compare<vec3>(&w, &w_ans);
+
+    v = { 3.0f, 2.0f, 1.0f };
+
+    v.L2_Normalize();
+    w_ans = { 0.802f, 0.535f, 0.265f };
+    compareFloatVec(v.v, w_ans.v, 3);
+
+    v.L2_Normalize();
+    compareFloatVec(v.v, w_ans.v, 3);
 }

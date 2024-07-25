@@ -19,10 +19,6 @@ template<> struct CONSTANTS<int> {
 };
 
 
-// ================ Math ================
-extern float fastInverseSqrt(float k);
-
-
 // ================ Vectors ================
 template<typename T, typename VEC, int N>
 class CPP_VECTOR_TEMP : public VEC {
@@ -35,7 +31,7 @@ public:
 
 // ---- Operations ----
 public:
-    CPP_VECTOR_TEMP<T,VEC,N> operator+(const CPP_VECTOR_TEMP<T,VEC,N>& b) {
+    CPP_VECTOR_TEMP<T,VEC,N> operator+(const CPP_VECTOR_TEMP<T,VEC,N>& b) const {
         CPP_VECTOR_TEMP<T,VEC,N> output;
         for (int i=0; i<N; i++) {
             output.v[i] = this->v[i] + b.v[i];
@@ -43,7 +39,7 @@ public:
         return output;
     } 
 
-    CPP_VECTOR_TEMP<T,VEC,N> operator-(const CPP_VECTOR_TEMP<T,VEC,N>& b) {
+    CPP_VECTOR_TEMP<T,VEC,N> operator-(const CPP_VECTOR_TEMP<T,VEC,N>& b) const {
         CPP_VECTOR_TEMP<T,VEC,N> output;
         for (int i=0; i<N; i++) {
             output.v[i] = this->v[i] - b.v[i];
@@ -51,21 +47,13 @@ public:
         return output;
     } 
 
-    T dot(const CPP_VECTOR_TEMP<T,VEC,N>& b) {
+    T dot(const CPP_VECTOR_TEMP<T,VEC,N>& b) const {
         T output = CONSTANTS<T>::zero;
         for (int i=0; i<N; i++) {
             output += this->v[i]*b.v[i];
         }
         return output;
     } 
-
-    T L2_Squared() {
-        T output = CONSTANTS<T>::zero;
-        for (int i=0; i<N; i++) {
-            output += this->v[i]*this->v[i];
-        }
-        return output;
-    }
 
 // ---- Mutations ----
 public:
@@ -87,10 +75,10 @@ public:
         }
     }
 
-    // void L2_Normalize() {
-    //     float k = fastInverseSqrt(L2_Squared());
-    //     scalarMult(k);
-    // }
+    void L2_Normalize() {
+        float k = 1.0f/sqrt(this->dot(*this));
+        scalarMult(k);
+    }
 
 // ---- Debuging ----
 public:
@@ -136,7 +124,7 @@ public:
 
 // --- Operations ---
 public:
-    CPP_MATRIX_TEMP<T,MAT,VEC,M,N> operator+(const CPP_MATRIX_TEMP<T,MAT,VEC,M,N>& B) {
+    CPP_MATRIX_TEMP<T,MAT,VEC,M,N> operator+(const CPP_MATRIX_TEMP<T,MAT,VEC,M,N>& B) const {
         CPP_MATRIX_TEMP<T,MAT,VEC,M,N> output;
         for (int i=0; i<M*N; i++) {
             output.A[i] = this->A[i] + B.A[i];
@@ -144,7 +132,7 @@ public:
         return output;
     }
 
-    CPP_MATRIX_TEMP<T,MAT,VEC,M,N> operator-(const CPP_MATRIX_TEMP<T,MAT,VEC,M,N>& B) {
+    CPP_MATRIX_TEMP<T,MAT,VEC,M,N> operator-(const CPP_MATRIX_TEMP<T,MAT,VEC,M,N>& B) const {
         CPP_MATRIX_TEMP<T,MAT,VEC,M,N> output;
         for (int i=0; i<M*N; i++) {
             output.A[i] = this->A[i] - B.A[i];
@@ -152,12 +140,28 @@ public:
         return output;
     }
 
-    CPP_VECTOR_TEMP<T,VEC,N> operator*(const CPP_VECTOR_TEMP<T,VEC,M>& v) {
+    CPP_VECTOR_TEMP<T,VEC,N> operator*(const CPP_VECTOR_TEMP<T,VEC,M>& v) const {
         CPP_VECTOR_TEMP<T,VEC,N> output;
         for (int i=0; i<M; i++) {
             output[i] = CONSTANTS<T>::zero;
             for (int j=0; j<N; j++) {
-                output[i] += this->get(i,j)*v.v[j];
+                output[i] += this->A[i + j*M]*v.v[j];
+            }
+        }
+        return output;
+    }
+
+    template<int P>
+    CPP_MATRIX_TEMP<T,MAT,VEC,M,P> operator*(const CPP_MATRIX_TEMP<T,MAT,VEC,N,P>& B) const {
+        CPP_MATRIX_TEMP<T,MAT,VEC,M,P> output;
+        T term;
+        for (int i=0; i<M; i++) {
+            for (int j=0; j<P; j++) {
+                term = CONSTANTS<T>::zero;
+                for (int k=0; k<N; k++) {
+                    term += this->A[i + k*M]*B.A[k + j*N];
+                }
+                output.A[i + j*M] = term;
             }
         }
         return output;
@@ -166,12 +170,12 @@ public:
 // --- Mutations ---
 public:
     void transpose() {
-        T temp;
+        T term;
         for (int i=1; i<M; i++) {
             for (int j=0; j<i; j++) {
-                temp = get(i,j);
+                term = get(i,j);
                 get(i,j) = get(j,i);
-                get(j,i) = temp;
+                get(j,i) = term;
             }
         }
     }
