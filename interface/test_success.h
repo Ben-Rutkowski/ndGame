@@ -8,11 +8,15 @@
 #define APP_AppFinishLaunch ":APP_AppFinishLaunch:"
 #define APP_StartLoop ":APP_StartLoop:"
 #define APP_InitWindowDelegate ":APP_InitWindowDelegate:"
+#define APP_CreateDrawRoutine ":APP_CreateDrawRoutine:"
+#define APP_ArmeDrawRoutine ":APP_ArmeDrawRoutine:"
 
 #define MOD_EventManagerNullCallback ":EventManagerNullCallback:"
 #define MOD_InitApplication ":MOD_InitApplication:"
 #define MOD_CreateNdWindow ":MOD_CreateNdWindow:"
 #define MOD_NoNdModuleSet ":MOD_NoNdModuleSet:"
+
+#define ERR_FailedToCreateDrawRoutine ":FailedToCreateDrawRoutine:"
 
 #define UNIT_Success ":UNIT_Success:"
 #define UNIT_Failure ":UNIT_Failure:"

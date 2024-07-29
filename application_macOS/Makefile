@@ -6,7 +6,7 @@ sub_HEADDIR =$(app_HEADDIR)
 
 
 # === Units ===
-SRC  =$(call FirstOrderSource,$(sub_SRCDIR),.m) 
+SRC  =$(call FirstOrderSource,$(sub_SRCDIR),.m) $(call SecondOrderSource,$(sub_SRCDIR),.m) 
 HEAD =$(call FirstOrderSource,$(sub_HEADDIR),.h) 
 OBJ  =$(call SourceToObject,$(SRC),$(obj_DIR))
 

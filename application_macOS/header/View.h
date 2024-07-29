@@ -4,8 +4,12 @@
 #import <AppKit/AppKit.h>
 #import <QuartzCore/CAMetalLayer.h>
 #import <Metal/Metal.h>
+#import "Renderer.h"
 
 @interface View : NSView<CALayerDelegate>
+
+@property (atomic, weak, nullable) Renderer* renderer;
+
 // --- Initializiation ---
 - (nonnull instancetype) initWithFrame:(CGRect)frame 
                                 device:(nonnull id<MTLDevice>)device;

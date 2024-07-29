@@ -7,12 +7,14 @@
 #import "event_manager_interface.h"
 #import "WindowDelegate.h"
 #import "View.h"
+#import "Renderer.h"
 
 @interface WindowBlock : NSObject
 
 @property (atomic, strong, nonnull) NSWindow* window;
 @property (atomic, strong, nonnull) WindowDelegate* window_delegate;
 @property (atomic, strong, nonnull) View* view;
+@property (atomic, strong, nonnull) Renderer* renderer;
 @property (atomic, strong, nonnull) EventManagerInterface* event_mananger_interface;
 
 - (nonnull instancetype) initWithFrame:(NSRect)frame 

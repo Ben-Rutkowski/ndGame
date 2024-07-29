@@ -55,7 +55,7 @@ void cocoaIntInitWindowBlockArray() {
     }
 }
  
-void cocoaIntLinkEventManagerToWindow(int window, 
+void cocoaIntLinkEventManagerToWindow(unsigned int window, 
                                    void* event_manager_ptr, 
                                    QueueEventCallback callback)
 {
@@ -66,14 +66,21 @@ void cocoaIntLinkEventManagerToWindow(int window,
     }
 }
 
-void cocoaIntShowWindow(int window) {
+void cocoaIntShowWindow(unsigned int window) {
     if (WINDOW_BLOCK_ARRAY != nil) {
         WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
         [window_block.window makeKeyAndOrderFront:nil];
     }
 }
 
-int cocoaIntCreateWindow(int width, int height, const char* title) {
+void cocoaIntArmDrawRoutine(unsigned int window, unsigned int draw_routine) {
+    if (WINDOW_BLOCK_ARRAY != nil) {
+        WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
+        [window_block.renderer armDrawRoutine:draw_routine];
+    }
+}
+
+unsigned int cocoaIntCreateWindow(int width, int height, const char* title) {
     NSRect    frame     = NSMakeRect(0, 0, width, height);
     NSString* title_s   = [NSString stringWithUTF8String:title];
     WindowBlock* window_block = [[WindowBlock alloc] initWithFrame:frame 
@@ -85,7 +92,16 @@ int cocoaIntCreateWindow(int width, int height, const char* title) {
     return [WINDOW_BLOCK_ARRAY count] - 1;
 }
 
-int cocoaIntShouldWindowClose(int window) {
+unsigned int cocoaIntCreateDrawRoutine(unsigned int window, unsigned int draw_routine_id) {
+    if (WINDOW_BLOCK_ARRAY != nil) {
+        WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
+        return [window_block.renderer createDrawRoutine:draw_routine_id];
+    } else {
+        return 0;
+    }
+}
+
+unsigned int cocoaIntShouldWindowClose(unsigned int window) {
     if (WINDOW_BLOCK_ARRAY != nil) {
         WindowBlock* window_block = WINDOW_BLOCK_ARRAY[window];
         return window_block.window_delegate.ndclose_window == YES;
@@ -94,7 +110,7 @@ int cocoaIntShouldWindowClose(int window) {
     }
 }
 
-void* cocoaIntGetNdWindow(int window) {
+void* cocoaIntGetNdWindow(unsigned int window) {
     return (__bridge void*)WINDOW_BLOCK_ARRAY[window];
 }
 

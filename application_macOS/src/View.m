@@ -7,6 +7,7 @@
 @implementation View
 {
     CAMetalLayer* _metal_layer;
+    Renderer*     _renderer;
 }
 
 
@@ -34,7 +35,9 @@
 
 // ================ Draw ================
 - (void) draw {
-    ndLog(LOG, "draw frame");
+    if (_renderer) {
+        [_renderer drawInMetalLayer:_metal_layer];
+    }
 }
 
 

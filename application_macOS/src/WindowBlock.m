@@ -5,7 +5,7 @@
 @implementation WindowBlock
 
 - (instancetype) initWithFrame:(NSRect)frame 
-                         title:(NSString *)title 
+                         title:(NSString*)title 
 {
     self = [super init];
     if (self) {
@@ -27,10 +27,13 @@
         // --- View ---
         id<MTLDevice> device = MTLCreateSystemDefaultDevice();
         _view = [[View alloc] initWithFrame:frame 
-                                          device:device];
+                                     device:device];
         [_window.contentView addSubview:_view];
 
-        // --- Render Switcher ---
+        // --- Renderer ---
+        _renderer = [[Renderer alloc] initWithMTLDevice:device
+                                             metalLayer:(CAMetalLayer*)_view.layer];
+        [_view setRenderer:_renderer];
 
         // --- Event Manager Interface ---
         _event_mananger_interface = [[EventManagerInterface alloc] init];

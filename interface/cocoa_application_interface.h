@@ -10,14 +10,16 @@ void cocoaIntPollEvents();
 typedef void (*QueueEventCallback)(void*, unsigned int);
 
 void cocoaIntInitWindowBlockArray();
-void cocoaIntLinkEventManagerToWindow(int window, 
+void cocoaIntLinkEventManagerToWindow(unsigned int window, 
                                    void* event_manager_ptr, 
                                    QueueEventCallback callback);
-void cocoaIntShowWindow(int window);
+void cocoaIntShowWindow(unsigned int window);
+void cocoaIntArmDrawRoutine(unsigned int window, unsigned int draw_routine);
 
-int cocoaIntCreateWindow(int width, int height, const char* title);
-int cocoaIntShouldWindowClose(int window);
+unsigned int cocoaIntCreateWindow(int width, int height, const char* title);
+unsigned int cocoaIntCreateDrawRoutine(unsigned int window, unsigned int draw_routine_id);
+unsigned int cocoaIntShouldWindowClose(unsigned int window);
 
-void* cocoaIntGetNdWindow(int window);
+void* cocoaIntGetNdWindow(unsigned int window);
 
 #endif

@@ -8,7 +8,7 @@ class ndWindow {
 
 // --- Attributes ---
 private:
-    int window_id;
+    unsigned int window_id;
     EventManager* event_manager_ptr;
 
 

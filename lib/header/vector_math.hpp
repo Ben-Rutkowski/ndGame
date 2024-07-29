@@ -1,7 +1,6 @@
 #ifndef VECTOR_MATH_HPP
 #define VECTOR_MATH_HPP
 
-#include "logger.h"
 #include "vector_math.h"
 #include <iostream>
 

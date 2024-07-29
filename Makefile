@@ -1,6 +1,6 @@
 include .config.mk
-all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR) $(lib_OBJDIR) $(app_OBJDIR)
-all_NAME   =mod int lib app
+all_OBJDIR =$(mod_OBJDIR) $(int_OBJDIR) $(app_OBJDIR)
+all_NAME   =mod int ldwib app
 
 
 # === Units ===
