@@ -78,6 +78,16 @@ TestSuite cocoa_window_block( "../cocoa_window_block/program.log", {
     }
 });
 
+TestSuite cocoa_renderer { "../cocoa_renderer/program.log", {
+    {
+        "Renderer Creating and Arming Draw Routines",
+        APP_CreateDrawRoutine " 0",
+        APP_ArmeDrawRoutine " 0",
+        APP_CreateDrawRoutine " 0",
+        APP_ArmeDrawRoutine " 1",
+    }
+}};
+
 TestSuite vector_math( "../math/program.log", {
     {
         "Vector and Matrix Tests",
@@ -86,11 +96,12 @@ TestSuite vector_math( "../math/program.log", {
 });
 
 int main() {
-    cocoa_application.evaluate();
     circular_queue.evaluate();
     event_manager.evaluate();
     nd_application.evaluate();
     nd_window.evaluate();
+    cocoa_application.evaluate();
     cocoa_window_block.evaluate();
+    cocoa_renderer.evaluate();
     vector_math.evaluate();
 }

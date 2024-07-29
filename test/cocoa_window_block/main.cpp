@@ -1,4 +1,5 @@
 #include "cocoa_application_interface.h"
+#include "common.h"
 #include "event_manager.hpp"
 #include "logger.h"
 #include "logger_wrapper.hpp" 
@@ -18,8 +19,8 @@ int main() {
 
 
     ndLog(LOG, "- Creating Windows -");
-    int window_0 = cocoaIntCreateWindow(800, 600, "ndWindow Test 0");
-    int window_1 = cocoaIntCreateWindow(400, 200, "ndWindow Test 1");
+    unsigned int window_0 = cocoaIntCreateWindow(800, 600, "ndWindow Test 0");
+    unsigned int window_1 = cocoaIntCreateWindow(400, 200, "ndWindow Test 1");
 
 
     ndLog(LOG, "- Testing Window Parameters -");

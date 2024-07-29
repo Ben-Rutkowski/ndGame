@@ -4,7 +4,7 @@
 #import "WindowBlock.h"
 #import "window_cocoa_TEST.hpp"
 
-void TEST_0_ndWindow_compareWindowSize(int window, int comp_width, int comp_height) {
+void TEST_0_ndWindow_compareWindowSize(unsigned int window, int comp_width, int comp_height) {
     WindowBlock* window_block = (__bridge WindowBlock*)cocoaIntGetNdWindow(window);
     NSView* view = [window_block.window contentView];
     float width  = (float)view.frame.size.width;
@@ -17,12 +17,12 @@ void TEST_0_ndWindow_compareWindowSize(int window, int comp_width, int comp_heig
     }
 }
 
-void TEST_1_ndWindow_showWindow(int window) {
+void TEST_1_ndWindow_showWindow(unsigned int window) {
     WindowBlock* window_block = (__bridge WindowBlock*)cocoaIntGetNdWindow(window);
     [window_block.window makeKeyAndOrderFront:nil];
 }
 
-void TEST_2_ndWindow_queueEventFromWindow(int window, unsigned int type) {
+void TEST_2_ndWindow_queueEventFromWindow(unsigned int window, unsigned int type) {
     WindowBlock* window_block = (__bridge WindowBlock*)cocoaIntGetNdWindow(window);
     [window_block.event_mananger_interface queueEvent:type];
 }
