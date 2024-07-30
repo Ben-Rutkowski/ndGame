@@ -67,16 +67,16 @@
 
 // ==== Draw ====
 - (void) drawInMetalLayer:(CAMetalLayer*)metal_layer {
-    // id<CAMetalDrawable> current_drawable = [metal_layer nextDrawable];
-    // if (current_drawable == nil) return;
+    id<CAMetalDrawable> current_drawable = [metal_layer nextDrawable];
+    if (current_drawable == nil) return;
 
-    // id<MTLCommandBuffer> command_buffer = [_command_queue commandBuffer];
+    id<MTLCommandBuffer> command_buffer = [_command_queue commandBuffer];
+    [_armed_draw_routine drawInDrawable:current_drawable commandBuffer:command_buffer];
 
-    // send command buffer to draw routine
     // add completed handler
 
-    // [command_buffer presentDrawable:current_drawable];
-    // [command_buffer commit];
+    [command_buffer presentDrawable:current_drawable];
+    [command_buffer commit];
 }
 
 @end

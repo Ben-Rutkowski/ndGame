@@ -10,6 +10,7 @@
 #define APP_InitWindowDelegate ":APP_InitWindowDelegate:"
 #define APP_CreateDrawRoutine ":APP_CreateDrawRoutine:"
 #define APP_ArmeDrawRoutine ":APP_ArmeDrawRoutine:"
+#define APP_DrawInNullDrawRoutine ":APP_DrawInNullDrawRoutine:"
 
 #define MOD_EventManagerNullCallback ":EventManagerNullCallback:"
 #define MOD_InitApplication ":MOD_InitApplication:"
